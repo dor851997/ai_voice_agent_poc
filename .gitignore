@@ -1,0 +1,35 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+*.pyd
+
+# Virtual environment
+venv/
+.env
+
+# Vosk models (if you don't want to track large model files)
+models/
+!models/.gitkeep  # Keep the directory but ignore its contents
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Logs and debugging
+logs/
+*.log
+*.out
+
+# VSCode settings (if using VSCode)
+.vscode/
+
+# Python package management
+pip-log.txt
+pip-delete-this-directory.txt
+
+# MacOS-specific
+*.swp
+._*
+.Spotlight-V100
+.Trashes

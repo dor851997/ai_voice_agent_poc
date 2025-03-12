@@ -30,18 +30,33 @@ def recognize_speech():
 
 
 def intent_recognition(text):
-    """Simple keyword-based intent recognition."""
+    """Fuzzy match intent recognition with input normalization."""
+    text = text.lower().strip()  # Normalize text input
+    
     commands = {
         "turn off": "power_off",
+        "power off": "power_off",
         "turn on": "power_on",
+        "power on": "power_on",
         "increase volume": "volume_up",
+        "volume up": "volume_up",
         "decrease volume": "volume_down",
+        "volume down": "volume_down",
+        "lower volume": "volume_down",
         "play music": "play_music",
-        "pause": "pause_music"
+        "start music": "play_music",
+        "pause music": "pause_music",
+        "stop music": "pause_music",
+        "exit": "exit"
     }
-    for key, intent in commands.items():
-        if key in text:
-            return intent
+
+    result = process.extractOne(text, commands.keys())
+
+    if result:
+        match, score = result[0], result[1]  # Unpack correctly
+        if score > 85:  # Increase confidence threshold
+            return commands[match]
+
     return "unknown"
 
 
